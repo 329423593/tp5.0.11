@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    {eq name="a" value="$b"}
+        <p>相等</p>
+    {else/}
+        <p>不相等</p>
+    {/eq}
+
+    {gt name='a' value='$b'}
+        <p>a大于b</p>
+    {else}
+        <p>a小于等于b</p>
+    {/gt}
+
+    {egt name='a' value='$b'}
+        <p>a大于等与b</p>
+    {else}
+        <p>a小于b</p>
+    {/egt}
+
+    {lt name='a' value='$b'}
+        <p>a小于b</p>
+    {else}
+        <p>a大于等于b</p>
+    {/lt}
+
+    {switch name="Think.get.level"}
+        {case value='1'} <p>当前会员是普通会员</p> {/case}
+        {case value='2'} <p>当前会员是白银会员</p> {/case}
+        {case value='3'} <p>当前会员是黄金会员</p> {/case}
+        {case value='4|5'} <p>当前会员是钻石会员</p> {/case}
+        {default /} <p>游客</p>
+    {/switch}
+
+
+    <!--type有四种方式 in 和 notin 和 between 和 notbetween-->
+    {range name="Think.get.level" value="1, 2, 3" type="in"}
+        <p>level值在1，2，3中</p>
+    {else/}
+        <p>level值不在1，2，3中</p>
+    {/range}
+
+    {in name="Think.get.level" value="1, 2, 3"}
+        <p>level值在1，2，3中</p>
+    {else/}
+        <p>level值不在1，2，3中</p>
+    {/in}
+
+    {defined name="APP_DEBUG"}
+        <p>APP_DEBUG已定义</p>
+    {else/}
+        <p>APP_DEBUG未定义</p>
+    {/defined}
+
+    {if condition="($Think.get.level>1) AND ($Think.get.level<7)"}
+        <p>level大于1且小于7</p>
+    {else/}
+        <p>level小于1或大于7</p>
+    {/if}
+</body>
+</html>

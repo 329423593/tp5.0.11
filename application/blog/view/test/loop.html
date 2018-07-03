@@ -1,0 +1,33 @@
+<html>
+    <head>
+
+
+    </head>
+
+    <body>
+        <!--这种注释方法在客户端源代码中能看到-->
+        <{/*这种注释方法在客户端源代码中则看不到*/}>
+
+        {volist name='res1' id='vo1'}
+            <p><{$i}> : <{$key}>  : <{$vo1.name}></p>
+        {/volist}
+
+        <br>
+
+        {foreach $res2 as $key => $vo2}
+            <p><{$key}> : <{$vo2.name}></p>
+        {/foreach}
+
+        <br>
+
+        {foreach name='res3' item='vo3' key='s'}
+            <p><{$s}> : <{$vo3.name}></p>
+        {/foreach}
+
+        <br>
+
+        {for start="1" end="10" step="1" name='k'}
+            <p><{$k}></p>
+        {/for}
+    </body>
+</html>

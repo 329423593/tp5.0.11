@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="__CSS__/style.css">
+
+    <meta charset="UTF-8">
+    <title>
+        {block name="title"}
+            tem_inherit
+        {/block}
+    </title>
+</head>
+<body>
+
+<div class="wrap">
+    <div class="header">
+        {include file="common/nav" /}
+    </div>
+    <div class="main">
+        <div class="sidebar">
+            sidebar
+        </div>
+        <div class="body">
+            {block name="body"}
+            {/block}
+        </div>
+    </div>
+    <div class="footer">
+        {block name="footer"}
+            footer
+        {/block}
+    </div>
+</div>
+
+</body>
+</html>

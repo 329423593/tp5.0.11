@@ -124,6 +124,22 @@ class Test extends BackAction
         return $this->fetch();
     }
 
+    public function picture(){
+        $page = 2;
+        $pageSize = 15;
+        $goods = db('goods')->alias('g')
+            ->field('g.goods_id, g.name, g.cover, g.date_add, g.on_sale, MIN(go.sale_price) as sale_price, go.stock')
+            ->join('goods_option go', 'g.goods_id = go.goods_id', 'left')
+            ->where("g.on_sale=1 and g.shop_code='2018070411582210199100'")
+            ->group('go.goods_id')
+            ->limit(($page-1)*$pageSize, $page*$pageSize)
+            ->order('g.goods_id desc')
+            ->select();
+
+        dump($goods);
+
+    }
+
     public static function curl_request(){
         $data = 'theRegionCode=31124';
         $curl = curl_init();
@@ -151,6 +167,32 @@ class Test extends BackAction
     }
 
     public function tem_inherit2(){
+        return $this->fetch();
+    }
+
+    public function tem_inherit3(){
+        return $this->fetch();
+    }
+    public function tem_inherit4(){
+
+        $time1 = "1532400668";
+        $now = time();
+        echo $time1+60*10;
+        echo "<br/>";
+        echo $now;
+        return $this->fetch();
+    }
+
+    public function test_swiper(){
+        return $this->fetch();
+    }
+    public function test_requirejs(){
+        return $this->fetch();
+    }
+    public function test_zhengze(){
+        return $this->fetch();
+    }
+    public function test_sortable(){
         return $this->fetch();
     }
 

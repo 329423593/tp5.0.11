@@ -1,0 +1,106 @@
+{extend name="common/base" /}
+
+{block name="body"}
+这是tem_inherit的body1
+<div class="container">
+    <div>
+        <a href="javascript:void(0);" v-for="item in arr[0].not_group">
+            <span v-html="item"></span>
+        </a>
+    </div>
+
+    <div> 热门推荐<input type="checkbox"> </div>
+
+    <div style="position: relative">
+        <textarea class="inp_class" :disabled="textNum>=30? 'disabled': ''" v-model="texta" name="" id="" cols="" rows="" placeholder="请输入"></textarea>
+        <span class="restrictNum">{{textNum}}/30</span>
+    </div>
+
+    <div>
+        <input type="radio" name="sex" value="isRec" v-model="picked">
+        <input type="radio" name="sex" value="isGro" v-model="picked">
+    </div>
+
+    <div @click="countButton" style="width:30px;height:30px">计算</div>
+</div>
+{/block}
+
+{block name="footer"}
+<script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<script src="__JS__/vue.min.js"></script>
+
+<script>
+    var vm = new Vue({
+        el:".container",
+        data: {
+            arr: [],
+            texta: '',
+            textNum: 0,
+            picked: 0,
+        },
+        created: function(){
+            this.setButton();
+
+        },
+        mounted: function(){
+            var that = this
+            $(".inp_class").keyup(function(){
+
+                that.textNum = that.texta.length;
+                if(that.textNum>=30){
+                    that.textNum = 30;
+
+//                    that.texta = that.texta.substring(0,30)
+                    return false;
+                }
+                console.log(JSON.stringify(that.texta))
+            });
+
+//            $("#nan").click(function(){
+//                console.log($("#nan").prop('checked'))
+//            })
+            $('input:radio').click(function(){
+                var $radio = $(this);
+                var domName = $(this).attr('name');
+                // if this was previously checked
+                if ($radio.data('waschecked') == true) {
+
+
+                    $radio.prop('checked', false);
+                    $("input:radio[name='" + domName + "']").data('waschecked',false);
+                    console.log(that.picked)
+                }else {
+                    $radio.prop('checked', true);
+                    $("input:radio[name='" + domName + "']").data('waschecked',false);
+                    $radio.data('waschecked', true);
+
+                    console.log(that.picked)
+                }
+            })
+
+        },
+        methods: {
+            setButton: function(){
+                this.arr.push({
+                    "not_group": ["删除菜单", "确认菜单"],
+                    "is_group": ["删除菜单", "确认菜单"]
+                })
+            },
+            countButton: function(){
+              for(var i=0;i<=this.arr.length;i++){
+                  console.log(JSON.stringify(this.arr));
+              }
+            },
+        }
+
+    });
+
+
+
+
+
+</script>
+
+这是tem_inherit的{__block__}
+{/block}

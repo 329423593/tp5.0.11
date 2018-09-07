@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script>
+        var phone_str = '快递元13416380047去除的号码,15011713127';
+        var reg_phone = /\b(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\d{8}/g;
+        var phone_num = phone_str.match(reg_phone);
+        console.log(phone_num)
+        if(Array.isArray(phone_num)){
+            var phone_html = "[<span font-color='red'>"+phone_num[0]+"</span>]";
+        }else{
+            var phone_html = "[<span font-color='red'>"+phone_num+"</span>]";
+        }
+
+        phone_str = phone_str.replace(reg_phone, phone_html);
+        alert(phone_str)
+
+    </script>
+</head>
+<body>
+    <span>body</span>
+</body>
+</html>

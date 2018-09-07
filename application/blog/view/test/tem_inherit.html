@@ -2,8 +2,82 @@
 
 {block name="body"}
     这是tem_inherit的body
+    <input type="text" v-model="test1[0]" ref="test1" value="" placeholder="请输入文字">
+    <input type="text" @click="modData()" v-model="abc" value="">
+    <div @click="save">
+        <button>保存</button>
+    </div>
+
+
+<ul id="sortable">
+    <li class="ui-state-default" :id="index" v-for="(item, index) in test1">
+        <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item <span v-html="index"></span>
+    </li>
+</ul>
 {/block}
 
 {block name="footer"}
-    这是tem_inherit的{__block__}
+<script src="__JS__/vue.min.js"></script>
+
+<!--<script src="__JS__/Sortable.js"></script>-->
+<!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
+<script src="__JS__/jquery.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script src="__JS__/layer/layer.js"></script>
+
+
+
+<script>
+    var vm = new Vue({
+        el:"#wrap",
+        data: {
+            abc: "菜鸟教程",
+            test1: [1,2,3,4,5,6]
+        },
+        created: function(){
+            this.abc = "created更改过的值";
+            layer.msg('123')
+        },
+        mounted: function(){
+            this.abc = "mounted更改过的值";
+
+            $( function() {
+                $( "#sortable" ).sortable({
+                    update: function(){
+                        var arr = $( "#sortable" ).sortable("toArray");
+                        console.log(arr);
+                    }
+                });
+                var arr = $( "#sortable" ).sortable("toArray");
+                console.log(arr);
+                $( "#sortable" ).disableSelection();
+            } );
+        },
+        methods: {
+            modData: function(){
+                alert(this.abc);
+            },
+            save:function(){
+                var test1 = this.test1;
+                alert(test1);
+
+                if(test1 == '' || test1 == null){
+                    alert ("请输入test1");
+                }else{
+                    alert ("结束！");
+                }
+
+            }
+        }
+
+    });
+
+
+
+
+
+</script>
+
+这是tem_inherit的{__block__}
 {/block}

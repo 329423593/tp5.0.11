@@ -1,0 +1,102 @@
+{extend name="common/base" /}
+
+{block name="body"}
+    这是tem_inherit的body
+
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <!--<div class="swiper-slide" v-for="item in test1">-->
+            <!--<img :src="item"/>-->
+        <!--</div>-->
+        <div class="swiper-slide">
+            <img src="http://xy-shop.oss-cn-shenzhen.aliyuncs.com/oG-Er1Z8t99lSe-fP1R4BkT0QJKQ/20180723/20180723102402_8286224100738.png"/>
+        </div>
+        <div class="swiper-slide">
+            <img src="http://xy-shop.oss-cn-shenzhen.aliyuncs.com/oG-Er1Z8t99lSe-fP1R4BkT0QJKQ/20180723/20180723102402_8286224100738.png"/>
+        </div>
+    </div>
+    <div class="swiper-pagination"></div>
+</div>
+
+    <button class="add" @click="add">照片加1</button>
+
+    <!--<input type="text" v-model="test1[0]" ref="test1" value="" placeholder="请输入文字">-->
+    <!--<input type="text" @click="modData()" v-model="abc" value="">-->
+    <!--<div @click="save">-->
+        <!--<button>保存</button>-->
+    <!--</div>-->
+{/block}
+
+{block name="footer"}
+<script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+<script src="__JS__/swiper.js"></script>
+<script src="__JS__/vue.min.js"></script>
+
+<script>
+    var vm = new Vue({
+        el:"#wrap",
+        data: {
+            abc: "菜鸟教程",
+            test1: ["http://xy-shop.oss-cn-shenzhen.aliyuncs.com/oG-Er1Z8t99lSe-fP1R4BkT0QJKQ/20180723/20180723102402_8286224100738.png"]
+        },
+        created: function(){
+            this.abc = "created更改过的值";
+
+        },
+        mounted: function(){
+            this.abc = "mounted更改过的值";
+            this.startSwiper();
+        },
+        methods: {
+            startSwiper: function(){
+                mySwiper = new Swiper('.swiper-container', {
+                    initialSlide :0,
+                    observer:true, //修改swiper自己或子元素时，自动初始化swiper
+                    observeParents:true, //修改swiper的父元素时，自动初始化swiper
+                    pagination: {
+                        el: '.swiper-pagination',
+                        type: 'fraction'
+                    },
+                    // on:{
+                    // slideChangeTransitionEnd: function(){
+                    // 	var swiperContainer = document.querySelectorAll("#swiperContainer .swiper-slide");
+                    // 	var swiperActive = document.querySelector("#swiperPaginationActive");
+                    // 	var swiperTotal = document.querySelector("#swiperPaginationTotal");
+                    // 	var index = this.activeIndex;
+                    // 	swiperActive.innerHTML = index+1;
+                    // 	swiperTotal.innerHTML = swiperContainer.length;
+                    // }
+
+                    // }
+                })
+            },
+            add: function(){
+              this.test1.push("http://xy-shop.oss-cn-shenzhen.aliyuncs.com/oG-Er1Z8t99lSe-fP1R4BkT0QJKQ/20180723/20180723102402_8286224100738.png");
+              this.startSwiper();
+            },
+            modData: function(){
+                alert(this.abc);
+            },
+            save:function(){
+                var test1 = this.test1;
+                alert(test1);
+
+                if(test1 == '' || test1 == null){
+                    alert ("请输入test1");
+                }else{
+                    alert ("结束！");
+                }
+
+            }
+        }
+
+    });
+
+
+
+
+
+</script>
+
+这是tem_inherit的{__block__}
+{/block}
